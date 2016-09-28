@@ -1,0 +1,10 @@
+{
+    "type": "user_request",
+    "source": "web",
+    "event": "action_requested",
+    "body": {
+      "action": "open",
+      "obj_id": "D1",
+      "action_params": {}
+    }
+}

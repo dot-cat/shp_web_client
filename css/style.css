@@ -1,0 +1,101 @@
+
+body {
+	color:#000;
+	background-color:#fff;
+}
+
+#container {
+	/*Styling for any element with the id="container" */
+	width:900px; /* The width is fixed by pixels */
+	height:800px; /* The height is fixed by pixels*/
+	color:#000;
+	background-color:#b3b3ff;
+	margin: 0 auto;
+}
+
+#rooms {
+	position: relative;
+	padding-top: 10px;
+}
+
+#rooms h3 {
+	text-align: center;
+}
+
+.clear {
+	clear: both;
+}
+
+#container .header, #container .accordion_row {
+	border-radius: 10px;
+	margin: 0px 5px 5px 5px;
+	color: #10126d;
+	padding: 0px 0 0 0;
+	background-color: #cd7cff;
+}
+
+.header {
+	color: #000000;
+	border-bottom: 2px solid #0b0a19;
+}
+
+#container .accordion_row.active, #container .accordion_row:hover {
+	background-color: #ddd;
+	cursor: pointer;
+}
+
+.ins-element-id, .ins-element-desc {
+	padding: 0;
+	margin-bottom: 10px;
+	line-height: 0;
+	height: 30px;
+	text-align: center;
+	float: left;
+}
+
+.ins-element-id {
+	width: 100px;
+}
+
+.ins-element-desc {
+	width: 300px;
+}
+
+/* Styles for objects in the panel */
+
+.room_objects_panel {
+	/* Style for animated accordion */
+	/* Is displayed when above element is clicked */
+
+	max-height: 0;
+	overflow: hidden;
+	transition: 0.4s ease;
+	opacity: 0;
+}
+
+.room_objects_panel.show {
+	opacity: 1;
+	max-height: 500px; /* Whatever you like,
+	as long as its more than the height of the content (on all screen sizes) */
+	background-color: #ffff83;
+	padding: 10px 0 5px 15px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+
+}
+
+.room_objects_panel .switch_desc, .room_objects_panel  .the_switch {
+	float: left;
+	width: 100px;
+	/*background-color: red;*/
+	padding-bottom: 0;
+	height: 35px;
+	margin-left: 10px;
+}
+
+.room_objects_panel .switch_desc {
+	padding-top: 5px;
+	height: 25px;
+	width: 150px;
+	overflow: hidden;
+}
