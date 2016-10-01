@@ -44,6 +44,11 @@ body {
 	cursor: pointer;
 }
 
+#container .accordion_row.active {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
 .ins-element-id, .ins-element-desc {
 	padding: 0;
 	margin-bottom: 10px;
@@ -81,12 +86,15 @@ body {
 	padding: 10px 0 5px 15px;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
-
+	margin: -5px 5px 5px 5px;
 }
 
-.room_objects_panel .switch_desc, .room_objects_panel  .the_switch {
+.room_objects_panel .switch_id,
+.room_objects_panel .switch_type,
+.room_objects_panel .switch_desc,
+.room_objects_panel  .the_switch {
 	float: left;
-	width: 100px;
+	width: 90px;
 	/*background-color: red;*/
 	padding-bottom: 0;
 	height: 35px;
@@ -96,6 +104,6 @@ body {
 .room_objects_panel .switch_desc {
 	padding-top: 5px;
 	height: 25px;
-	width: 150px;
+	width: 140px;
 	overflow: hidden;
 }
