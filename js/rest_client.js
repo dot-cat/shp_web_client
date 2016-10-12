@@ -1,6 +1,7 @@
 
 var DOMFactory;
 DOMFactory = {
+
 };
 
 class ControllableObject {
@@ -268,7 +269,83 @@ Requester = {
 
 var Handlers;
 Handlers = {
-	RoomClickHandler: function() {
+	RoomClickHandler: function(this_room) {
+
+		this_room.classList.toggle("active");
+		var room_model = House.room_bindings.get(this_room);
+
+		//	Check if the room is currently viewing
+		if (room_model.isActive() === false) {
+			var room_obj_ids = room_model._object_ids;
+			if (!room_model.hasMappedObjects()) {
+
+				var received_objects = [];
+				//	Getting the data from server successively
+				for (i in room_obj_ids) {
+					var objectData = Requester.getData(Requester.objectsURI + room_obj_ids[i]);
+					received_objects.push(objectData);
+				}
+				var objects_nodes = [];
+				//	Create all mappings
+				for (i in received_objects) {
+					//	Step 1: Create Objects Model.
+					var NewObjectModel = new ControllableObject(received_objects[i].id
+						, received_objects[i].actions
+						, received_objects[i].status
+						, received_objects[i].type
+						, received_objects[i].description
+					);
+					//	Step 2: create DOM controller
+					//	TODO: in future create array for controller of possible types of actions on the object
+					var controller = NewObjectModel.createDOMController();
+					//	Step 3: assign handler for "onclick" event
+
+					// TODO: Create separated handler
+					controller.onclick = function () {
+						//	TODO: implement!
+						//	...
+						let model_obj = room_model._object_bindings.get(this_room);
+						//if (this.checked == true) {
+						//		if (model_obj.)
+						//		}
+						model_obj.toggleStatus();
+						//console.log(model_obj._status);
+						Requester.postCommands(model_obj._id, "toggle");
+					}
+					//	Step 4: Bind the input controller to the model of controllable object
+					room_model.bindControllerWithModel(controller, NewObjectModel);
+
+					//	Step 5: Add design and decorator for main controller (input)
+					//	TODO: In future make it possible to have several controllers for one object
+					var pretty_controller = NewObjectModel.decorateDOMController(controller);
+					//	Step 6: TODO: so, put them in the array
+					var controllers = [];
+					controllers.push(pretty_controller);
+					//	Step 7: At last - create the whole html node with id and description views
+					objects_nodes.push(NewObjectModel.createObjectDOMNode(controllers));
+				}
+				//	Step 8: Add objects to the panel
+				var objects_panel = ControllableObject.createObjectPanel(objects_nodes);
+				this_room.parentNode.insertBefore(objects_panel, this_room.nextSibling);
+
+			} else {
+				//	TODO: Update models and DOM elements
+				var object_models = room_model._object_bindings.keys();
+
+				for (let key_val of object_models) {
+					//console.log(room_model._object_bindings.get(key_val));
+					let model_obj = room_model._object_bindings.get(key_val); // Controllable Object
+					let model_id = model_obj._id;
+					//console.log(model_id);
+					let objectData = Requester.getData(Requester.objectsURI + model_id);
+					model_obj.updateStatus(key_val, objectData.status);
+
+				}
+				//console.log(object_models);
+			}
+		}
+		room_model.toggleActivity();
+		this_room.nextSibling.classList.toggle("show");
 	}
 };
 
@@ -298,6 +375,7 @@ House = {
 	bindModelWithDOM: function (htmlNode, roomModel) {
 		House.room_bindings.set(htmlNode, roomModel);
 	},
+
 	createRoom: function(room) {
 
 		var NewRoom = House.createRoomModel(room.id, room.description, room.objects);
@@ -307,82 +385,7 @@ House = {
 		House.bindModelWithDOM(htmlNode, NewRoom);
 
 		htmlNode.onclick = function () { // TODO: Create separated handler
-
-			this.classList.toggle("active");
-			var room_model = House.room_bindings.get(this);
-
-			//	Check if the room is currently viewing
-			if (room_model.isActive() === false) {
-				var room_obj_ids = room_model._object_ids;
-				if (!room_model.hasMappedObjects()) {
-
-					var received_objects = [];
-					//	Getting the data from server successively
-					for (i in room_obj_ids) {
-						var objectData = Requester.getData(Requester.objectsURI + room_obj_ids[i]);
-						received_objects.push(objectData);
-					}
-					var objects_nodes = [];
-					//	Create all mappings
-					for (i in received_objects) {
-						//	Step 1: Create Objects Model.
-						var NewObjectModel = new ControllableObject(received_objects[i].id
-							, received_objects[i].actions
-							, received_objects[i].status
-							, received_objects[i].type
-							, received_objects[i].description
-						);
-						//	Step 2: create DOM controller
-						//	TODO: in future create array for controller of possible types of actions on the object
-						var controller = NewObjectModel.createDOMController();
-						//	Step 3: assign handler for "onclick" event
-
-						// TODO: Create separated handler
-						controller.onclick = function () {
-							//	TODO: implement!
-							//	...
-							let model_obj = room_model._object_bindings.get(this);
-							//if (this.checked == true) {
-							//		if (model_obj.)
-							//		}
-							model_obj.toggleStatus();
-							//console.log(model_obj._status);
-							Requester.postCommands(model_obj._id, "toggle");
-						}
-						//	Step 4: Bind the input controller to the model of controllable object
-						room_model.bindControllerWithModel(controller, NewObjectModel);
-
-						//	Step 5: Add design and decorator for main controller (input)
-						//	TODO: In future make it possible to have several controllers for one object
-						var pretty_controller = NewObjectModel.decorateDOMController(controller);
-						//	Step 6: TODO: so, put them in the array
-						var controllers = [];
-						controllers.push(pretty_controller);
-						//	Step 7: At last - create the whole html node with id and description views
-						objects_nodes.push(NewObjectModel.createObjectDOMNode(controllers));
-					}
-					//	Step 8: Add objects to the panel
-					var objects_panel = ControllableObject.createObjectPanel(objects_nodes);
-					this.parentNode.insertBefore(objects_panel, this.nextSibling);
-
-				} else {
-					//	TODO: Update models and DOM elements
-					var object_models = room_model._object_bindings.keys();
-
-					for (let key_val of object_models) {
-						//console.log(room_model._object_bindings.get(key_val));
-						let model_obj = room_model._object_bindings.get(key_val); // Controllable Object
-						let model_id = model_obj._id;
-						//console.log(model_id);
-						let objectData = Requester.getData(Requester.objectsURI + model_id);
-						model_obj.updateStatus(key_val, objectData.status);
-
-					}
-					//console.log(object_models);
-				}
-			}
-			room_model.toggleActivity();
-			this.nextSibling.classList.toggle("show");
+			Handlers.RoomClickHandler(this);
 		} //	htmlNode.onclick()
 	}
 };
