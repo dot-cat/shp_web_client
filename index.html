@@ -1,130 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>REST api</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta charset="UTF-8"> 
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/toggle_switch.css">
-<script src="js/jquery-2.2.0.min.js"></script>
-<script src="js/rest_client.js" type="text/javascript"></script>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0, maximum-scale=1.0">
+    
+    <!-- Cite title -->
+    <title>.CAT Home</title>
+
+    <!------------------------------------------->
+    <!-- Linked styles, scripts, files, icons. -->
+    <!------------------------------------------->
+    <!-- Styles -->
+    <link href="styles/all.css"                  rel="stylesheet" >
+    <link href="styles/controllable_objects.css" rel="stylesheet" >
+    <link href="styles/footer.css"               rel="stylesheet" >
+    <link href="styles/header.css"               rel="stylesheet" >
+    <link href="styles/rooms_box.css"            rel="stylesheet" >
+    <!-- Icons -->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <!-- Script: jQuery -->
+    <script src="js/jquery.js"           ></script>
+    <!-- Script: Configs -->
+    <script src="js/configs/doors.js"    ></script>
+    <script src="js/configs/fans.js"     ></script>
+    <script src="js/configs/lights.js"   ></script>
+    <script src="js/configs/rooms.js"    ></script>
+    <script src="js/configs/sunblinds.js"></script>
+    <!-- Script: Model -->
+    <script src="js/model/rooms.js"      ></script>
+    <script src="js/model/lights.js"     ></script>
+    <!-- Script: Requester -->
+    <script src="js/requester.js"        ></script>
+     <!-- Script: Main -->
+    <script src="js/main.js"             ></script>
+    
 </head>
 <body>
-	<div id="container">
-		
-		<div id="rooms">
-			<h3>Rooms</h3>
-
-			<div class="header">
-				<div class="ins-element-id">
-					<h4>ID</h4>
-				</div>
-				<div class="ins-element-desc">
-					<h4>Description</h4>
-				</div>
-				<div class="clear"></div>
-			</div>
-
-			<div class="accordion_row">
-				<div class="ins-element-id">
-					<h4>1</h4>
-				</div>
-				<div class="ins-element-desc">
-					<h4>Living Room</h4>
-				</div>
-				<div class="clear"></div>
-			</div>
-				<div class="room_objects_panel">
-					<div class="controllable_element">
-						<div class="switch_id">
-							D1
-						</div>
-						<div class="switch_desc"> <!-- Switch description -->
-							Door1:
-						</div>
-						<div class="the_switch">
-							<!-- Rectangular switch - see style in toggle_switch.css -->
-							<label class="switch">
-								<input type="checkbox">
-								<div class="slider"></div>
-							</label>
-						</div>
-						<div class="clear"></div>
-					</div>
-
-					<div class="controllable_element">
-						<div class="switch_id">
-							D1
-						</div>
-						<div class="switch_desc">
-							Lighter2:
-						</div>
-						<div class="the_switch">
-							<!-- Rectangular switch - see style in toggle_switch.css -->
-							<label class="switch">
-								<input type="checkbox">
-								<div class="slider"></div>
-							</label>
-						</div>
-						<div class="clear"></div>
-					</div>
-				</div>
-
-
-			<div class="accordion_row">
-				<div class="ins-element-id">
-					<h4>1</h4>
-				</div>
-				<div class="ins-element-desc">
-					<h4>Living Room</h4>
-				</div>
-				<div class="clear"></div>
-			</div>
-
-				<div class="room_objects_panel">
-					<div class="switch_id">
-						D1
-					</div>
-					<div class="switch_desc">
-						Door1:
-					</div>
-					<div class="the_switch">
-						<!-- Rectangular switch - see style in toggle_switch.css -->
-						<label class="switch">
-							<input type="checkbox">
-							<div class="slider"></div>
-						</label>
-					</div>
-					<div class="clear"></div>
-
-					<div class="switch_id">
-						D1
-					</div>
-					<div class="switch_desc">
-						Lighter2:
-					</div>
-					<div class="the_switch">
-						<!-- Rectangular switch - see style in toggle_switch.css -->
-						<label class="switch">
-							<input type="checkbox">
-							<div class="slider"></div>
-						</label>
-					</div>
-					<div class="clear"></div>
-				</div>
-			<!--
-			<div class="accordion_row">
-				<div class="ins-element-id">
-					<h4>1</h4>
-				</div>
-				<div class="ins-element-desc">
-					<h4>Living Room</h4>
-				</div>
-				<div class="clear"></div>
-			</div>
-			-->
-		</div>
-		
-	</div>
+    <!-- start header -->
+    <header>
+        <!-- stat wrapper -->
+        <div class="wrapper">
+            <!-- start nav -->
+            <nav></nav>
+            <!-- end nav -->
+        </div>
+        <!-- end wrapper -->
+    </header>
+    <!-- end header -->
+    <!-- start main -->
+    <div class="main">
+        <!-- start wrapper -->
+        <div class="wrapper">
+            <!-- start room box -->
+            <div class="rooms_box">
+                <!-- start rooms items -->
+                <!--
+                <div class="room_item" name="room_name" id="room_id">
+                    <div class="room_image"></div>
+                    <div class="room_info">
+                        <div class="info_text"></div>
+                        <div class="open_control"></div>
+                    </div>
+                    <div class="room_control open|close">
+                        <div class="control_title"><div>
+                        <div class="close_control"></div>
+                        <div class="control_body"></div>
+                    </div>
+                </div>
+                -->
+                <!-- end rooms items -->
+            </div>
+            <!-- end room box -->
+        </div>
+        <!-- end wrapper -->
+    </div>
+    <!-- end main -->
+    <!-- start footer -->
+    <footer></footer>
+    <!-- end footer -->
 </body>
 </html>
+
+
+
