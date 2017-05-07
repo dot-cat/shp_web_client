@@ -1,4 +1,4 @@
-var path_to_files = "js/";
+var path_to_files = "./js/";
 var files_needed = ["dom_factory.js", "controllable_objects.js", "room.js", "requester.js", "house.js"];
 
 var thisTag = document.currentScript;
