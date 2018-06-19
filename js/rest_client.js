@@ -12,9 +12,9 @@ function loadJS(filename) {
 	thisTag.parentNode.insertBefore(fileref, thisTag);
 }
 
-for (var i in files_needed) {
-	loadJS(files_needed[i]);
-}
+//for (var i in files_needed) {
+//	loadJS(files_needed[i]);
+//}
 
 
 $(document).ready( function () {

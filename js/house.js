@@ -70,7 +70,7 @@ House = {
             //	Step 1: Create Objects Model.
             var object_model = new ControllableObject(received_objects[i].id
                 , received_objects[i].actions
-                , received_objects[i].status
+                , received_objects[i].state
                 , received_objects[i].type
                 , received_objects[i].description
             );

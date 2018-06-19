@@ -2,10 +2,10 @@
 
 var Requester;
 Requester = {
-    url: 'http://127.0.0.1:10800',	//	alarmpi.cat/
+    url: 'https://api.ks-cube.tk', // 'http://192.168.1.100:32420',	//	alarmpi.cat/
 
     roomsURI: '/rooms/',
-    objectsURI: '/objects/',
+    objectsURI: '/things/',
     messagesURI: '/messages/',
 
     request: new XMLHttpRequest(),

@@ -16,13 +16,13 @@ class ControllableObject {
 
 
     toggleStatus() {
-        if (this._type == "door") {
+        if (this._type == "slider") {
             if (this._status == "opened") {
                 this._status = "closed";
             } else {
                 this._status = "opened";
             }
-        } else if (this._type == "lighting" || this._type == "fan") {
+        } else if (this._type == "switch") {
             if (this._status == "on") {
                 this._status = "off";
             } else {
